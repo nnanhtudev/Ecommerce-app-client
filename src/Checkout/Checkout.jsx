@@ -45,7 +45,7 @@ function Checkout(props) {
 
         console.log(response);
 
-        setCarts(response);
+        setCarts(response.DT);
 
         getTotal(response);
 

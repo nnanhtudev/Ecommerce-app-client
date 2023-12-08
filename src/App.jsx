@@ -31,7 +31,7 @@ function App() {
           <Route path="/history" component={History} /> <Route path="/shop" component={Shop} />
         </Switch>{" "}
         <ToastContainer
-          position="bottom-center"
+          position="bottom-left"
           autoClose={5000}
           hideProgressBar={false}
           newestOnTop={false}

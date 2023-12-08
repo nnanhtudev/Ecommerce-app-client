@@ -1,0 +1,67 @@
+/* Add this CSS to your existing stylesheet or create a new one */
+
+/* Styles for the product section */
+.product {
+  padding: 15px;
+  margin-bottom: 20px;
+  transition: box-shadow 0.3s ease-in-out;
+  position: relative; /* Add position relative to .product for absolute positioning */
+}
+
+.product:hover {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.product h6 {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.product p {
+  color: #555;
+}
+
+.product .price {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #e44d26; /* Set the color you want for the price */
+}
+
+/* Styles for the modal */
+.modal-content {
+  border: none;
+  border-radius: 0;
+}
+
+.modal-body {
+  padding: 0;
+}
+
+.product-view {
+  height: 400px; /* Set a fixed height for the product image in the modal */
+  object-fit: cover;
+}
+
+/* Adjustments for responsiveness */
+@media (max-width: 768px) {
+  .product {
+    margin-bottom: 15px;
+  }
+
+  .product img {
+    margin-bottom: 0;
+  }
+
+  .modal-lg {
+    max-width: 80%;
+  }
+}

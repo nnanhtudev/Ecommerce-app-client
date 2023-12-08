@@ -16,8 +16,20 @@ const UserAPI = {
     return axiosClient.post(url);
   },
 
+  // fix
+
+  getAccount: () => {
+    const url = "/client/user/account";
+    return axiosClient.get(url);
+  },
+
   postSignUpUser: (data) => {
     const url = `/client/user/register`;
+    return axiosClient.post(url, { data: data });
+  },
+
+  postSignInUser: (data) => {
+    const url = `/client/user/login`;
     return axiosClient.post(url, { data: data });
   },
 };
