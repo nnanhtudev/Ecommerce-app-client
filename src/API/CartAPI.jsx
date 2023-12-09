@@ -12,12 +12,12 @@ const CartAPI = {
   },
 
   deleteToCart: (query) => {
-    const url = `/carts/delete${query}`;
+    const url = `/client/carts/delete${query}`;
     return axiosClient.delete(url);
   },
 
   putToCart: (query) => {
-    const url = `/carts/update${query}`;
+    const url = `/client/carts/update${query}`;
     return axiosClient.put(url);
   },
 };

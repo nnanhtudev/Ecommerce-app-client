@@ -10,7 +10,7 @@ const socket = io("http://localhost:5000");
 
 function Checkout(props) {
   const [carts, setCarts] = useState([]);
-
+  const [orderId, setOrderId] = useState("");
   const [total, setTotal] = useState(0);
 
   const [fullname, setFullname] = useState("");
@@ -47,7 +47,7 @@ function Checkout(props) {
 
         setCarts(response.DT);
 
-        getTotal(response);
+        getTotal(response.DT);
 
         if (response.length === 0) {
           window.location.replace("/cart");
@@ -63,14 +63,14 @@ function Checkout(props) {
     let sub_total = 0;
 
     const sum_total = carts.map((value) => {
-      return (sub_total += parseInt(value.priceProduct) * parseInt(value.count));
+      return (sub_total += parseInt(value.products.price) * parseInt(value.count));
     });
 
     setTotal(sub_total);
   }
 
   //Check Validation
-  const handlerSubmit = () => {
+  const handlerSubmit = async () => {
     if (!fullname) {
       setFullnameError(true);
       setEmailError(false);
@@ -117,9 +117,22 @@ function Checkout(props) {
               setPhoneError(false);
               setAddressError(true);
             } else {
-              console.log("Thanh Cong");
-
-              setLoad(!load);
+              let cardSendServer = carts.map((item) => item._id);
+              let data = {
+                user: localStorage.getItem("id_user"),
+                fullname,
+                email,
+                phone,
+                address,
+                carts: cardSendServer,
+              };
+              let res = await CheckoutAPI.postOrder(data);
+              if (res && res.EC === 0) {
+                setOrderId(res.DT._id);
+                setLoad(!load);
+                console.log("Thanh Cong");
+              }
+              // setLoad(!load);
             }
           }
         }
@@ -137,6 +150,7 @@ function Checkout(props) {
           phone: phone,
           address: address,
           idUser: localStorage.getItem("id_user"),
+          order: orderId,
         };
 
         const query = "?" + queryString.stringify(params);
@@ -295,10 +309,10 @@ function Checkout(props) {
                         carts.map((value) => (
                           <div key={value._id}>
                             <li className="d-flex align-items-center justify-content-between">
-                              <strong className="small font-weight-bold">{value.nameProduct}</strong>
+                              <strong className="small font-weight-bold">{value.products.name}</strong>
                               <br></br>
                               <span className="text-muted small">
-                                {convertMoney(value.priceProduct)} VND x {value.count}
+                                {convertMoney(value.products.price)} VND x {value.count}
                               </span>
                             </li>
                             <li className="border-bottom my-2"></li>

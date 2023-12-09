@@ -90,7 +90,7 @@ function ListCart(props) {
         <tbody>
           {listCart &&
             listCart.map((value, index) => (
-              <tr className="text-center" key={index}>
+              <tr className={`text-center ${value._id}`} key={index}>
                 <td className="pl-0 border-0">
                   <div className="media align-items-center justify-content-center">
                     <Link className="reset-anchor d-block animsition-link" to={`/detail/${value.products._id}`}>
@@ -114,7 +114,7 @@ function ListCart(props) {
                     <button
                       className="dec-btn p-0"
                       style={{ cursor: "pointer" }}
-                      onClick={() => handlerDown(value.idUser, value.idProduct, value.count)}
+                      onClick={() => handlerDown(value.user, value.products._id, value.count)}
                     >
                       <i className="fas fa-caret-left"></i>
                     </button>
@@ -127,7 +127,7 @@ function ListCart(props) {
                     <button
                       className="inc-btn p-0"
                       style={{ cursor: "pointer" }}
-                      onClick={() => handlerUp(value.idUser, value.idProduct, value.count)}
+                      onClick={() => handlerUp(value.user, value.products._id, value.count)}
                     >
                       <i className="fas fa-caret-right"></i>
                     </button>
@@ -142,7 +142,7 @@ function ListCart(props) {
                   <a
                     className="reset-anchor remove_cart"
                     style={{ cursor: "pointer" }}
-                    onClick={() => handlerDelete(value.idUser, value.idProduct)}
+                    onClick={() => handlerDelete(value.user, value.products._id)}
                   >
                     <i className="fas fa-trash-alt small text-muted"></i>
                   </a>
