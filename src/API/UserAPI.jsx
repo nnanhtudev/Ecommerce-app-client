@@ -32,6 +32,11 @@ const UserAPI = {
     const url = `/client/user/login`;
     return axiosClient.post(url, { data: data });
   },
+
+  postLogoutUser: () => {
+    const url = `/client/user/logout`;
+    return axiosClient.post(url);
+  },
 };
 
 export default UserAPI;

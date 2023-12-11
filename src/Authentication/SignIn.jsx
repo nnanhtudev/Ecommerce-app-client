@@ -78,7 +78,7 @@ function SignIn(props) {
         if (res && res.EC === 0) {
           await fetchDataAccount();
           toast.success(res.EM);
-          localStorage.setItem("id_user", user.id_User);
+          localStorage.setItem("id_user", res.DT.id);
           const action = addSession(localStorage.getItem("id_user"));
           dispatch(action);
           setCheckPush(true);
