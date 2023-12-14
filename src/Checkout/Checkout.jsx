@@ -4,10 +4,10 @@ import CartAPI from "../API/CartAPI";
 import CheckoutAPI from "../API/CheckoutAPI";
 import convertMoney from "../convertMoney";
 import "./Checkout.css";
-import "dotenv/config";
+import config from "../config/index";
 
 import io from "socket.io-client";
-const socket = io("https://server-ecommerce-kl7p.onrender.com");
+const socket = io(`${config.URL_SERVER_SOCKET}/checkout`, { transports: ["websocket"] });
 
 function Checkout(props) {
   const [carts, setCarts] = useState([]);

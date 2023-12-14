@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Chat.css";
-import queryString from "query-string";
-
 import ChatRoomsAPI from "../../API/ChatRoomsAPI";
-import { useSelector } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
 import io from "socket.io-client";
-const socket = io("https://server-ecommerce-kl7p.onrender.com/chat", { transports: ["websocket"] });
+import config from "../../config";
+const socket = io(`${config.URL_SERVER_SOCKET}/chat`, { transports: ["websocket"] });
 
 function Chat(props) {
   const [activeChat, setActiveChat] = useState(false);
