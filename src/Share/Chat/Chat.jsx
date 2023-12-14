@@ -3,7 +3,7 @@ import "./Chat.css";
 import ChatRoomsAPI from "../../API/ChatRoomsAPI";
 import io from "socket.io-client";
 import config from "../../config";
-const socket = io(`${config.URL_SERVER_SOCKET}/chat`, { transports: ["websocket"] });
+const socket = io("https://server-ecommerce-kl7p.onrender.com/chat", { transports: ["websocket"] });
 
 function Chat(props) {
   const [activeChat, setActiveChat] = useState(false);

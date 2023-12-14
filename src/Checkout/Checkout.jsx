@@ -7,7 +7,7 @@ import "./Checkout.css";
 import config from "../config/index";
 
 import io from "socket.io-client";
-const socket = io(`${config.URL_SERVER_SOCKET}/checkout`, { transports: ["websocket"] });
+const socket = io("https://server-ecommerce-kl7p.onrender.com/checkout", { transports: ["websocket"] });
 
 function Checkout(props) {
   const [carts, setCarts] = useState([]);
